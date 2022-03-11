@@ -52,7 +52,8 @@ const switchTab = (id) => {
 
 const createPost = (post) => {
     const div = document.createElement( "article" );
-    div.classList.add( "post" );
+  div.classList.add("post");
+  //third error solved
     div.innerHTML = `
               <div class="post__header">
                 <div class="post__profile">
