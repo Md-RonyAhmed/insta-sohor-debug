@@ -1,4 +1,4 @@
-let posts=[ ];
+let posts=[];
 
 const likedPostsId = [];
 const reportedPostsId = [];
@@ -44,8 +44,7 @@ const switchTab = (id) => {
     } else {
         document.getElementById( "reported" ).style.display = "block";
         document.getElementById( "posts" ).style.display = "none";
-        document.getElementById( "liked" ).style.display = "none";
-
+        document.getElementById("liked").style.display = "none";
         displayReportedPosts();
     }
 };
@@ -64,7 +63,7 @@ const createPost = (post) => {
                   >
                     <img src="${post.userImage}" alt="User Picture" />
                   </a>
-                  <a href="#" class="post__user">phero</a>
+                  <a href="#" class="post__user">${post.comments[0]?.user}</a>
                 </div>
 
                 <button class="post__more-options">
@@ -111,7 +110,7 @@ const createPost = (post) => {
                     </a>
 
                     <span>Liked by
-                      <a class="post__name--underline" href="#">user123</a> and
+                      <a class="post__name--underline" href="#">${post.comments[0]?.user}</a> and
                       <a href="#">73 others</a></span>
                   </div>
 
@@ -135,7 +134,6 @@ const createPost = (post) => {
 const showPosts = (posts) => {
     const productsContainer = document.getElementById( "posts" );
     productsContainer.innerHTML = "";
-
     posts.forEach((post) => {
         const div = createPost(post);
         productsContainer.appendChild(div);
@@ -143,18 +141,20 @@ const showPosts = (posts) => {
 };
 
 const displayLikedPosts = () => {
+  document.getElementById("liked").innerHTML = '';
     const likedPosts = getLikedPosts();
     likedPosts.forEach((post) => {
         const div = createPost(post);
-        document.getElementById( "liked" ).appendChild(div);
+        document.getElementById("liked").appendChild(div);
     });
 };
 
 const displayReportedPosts = () => {
-    const reportedPosts = getReportedPosts();
-    posts.forEach((post) => {
-        const div = createPost(post);
-        document.getElementById( "reported" ).appendChild(div);
+  document.getElementById("reported").innerHTML = '';
+  const reportedPosts = getReportedPosts();
+  reportedPosts.forEach((post) => {
+    const div = createPost(post);
+      document.getElementById("reported").appendChild(div);
     });
 };
 
